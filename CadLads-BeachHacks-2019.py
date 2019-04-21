@@ -21,9 +21,6 @@ dungeon = [[0, 0, 0], [0, 0, 0], [0, 0, 0],
 player_hp = 125
 player_ad = 25
 
-enemy_hp = 80
-enemy_ad = 20
-
 def dungeon_enemies(map):
     for corridor in map:
         for room in corridor:
@@ -39,21 +36,16 @@ def is_conflict(conflict):
     return 1
 
 def print_battle_options():
-    enemy_name = ["Goblin", "Golem", "Troll", "Giant Rat",
-                  "Dragon", "Imp"]
-    choose_enemy = random.randint(0, 5)
-    if choose_enemy == (0 or 3 or 5):
+    enemy_name = ["Goblin", "Golem", "Giant Rat", "Troll", "Imp"]
+    choose_enemy = random.randint(0, 4)
+    if choose_enemy % 2 == 0 :
         enemy_hp = random.randint(30, 50)
         enemy_ad = random.randint(20, 30)
         enemy_ad_range = "20 - 30"
-    elif choose_enemy == (1 or 2):
-        enemy_hp = random.randint(65, 75)
-        enemy_ad = random_randint(35, 40)
-        enemy_ad_range = "35 - 40"
     else:
-        enemy_hp = random.randint(80, 100)
-        enemy_ad = random.randint(35, 50)
-        enemy_ad_range = "35 - 50"
+        enemy_hp = random.randint(65, 75)
+        enemy_ad = random.randint(35, 40)
+        enemy_ad_range = "35 - 40"
     newline()
     print("\nYou are met with a {0}!\nEnemy HP = {1}\n"
           "Enemy AD Range = {2}\n\nBattle Options:\n1. Attack\n2. "
