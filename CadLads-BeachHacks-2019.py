@@ -20,9 +20,9 @@ def dungeon_map():
     dungeon = [[0, 0, 0], [0, 0, 0], [0, 0, 0],
                [0, 0, 0], [0, 0, 0], [0, 0, 0],
                [0, 0, 0], [0, 0, 0], [0, 0, 0]]
-    for corridor in dungeon:
-        for room in corridor:
-            room = random.randint(0, 1)
+    for i in range(9):
+        for j in range(3):
+            dungeon[i][j] = random.randint(0, 1)
     return dungeon
 
 def get_player_name():
