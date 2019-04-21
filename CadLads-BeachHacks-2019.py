@@ -59,7 +59,7 @@ def get_battle_option():
     return choice
 
 def battle(enemy):
-    print_battle_options()
+    print_battle_options(enemy)
     choice = get_battle_option()
     player_ad = random.randint(20, 25)
     if choice == 1:
