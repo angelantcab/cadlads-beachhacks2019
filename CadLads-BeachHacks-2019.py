@@ -60,3 +60,14 @@ def battle():
     if choice == 1:
         if
 '''
+
+Enters room
+def options() :
+    conflict
+        print("Defeat enemies)
+    
+    move on
+        print("Find the next room")
+              
+Next room
+def options() :
