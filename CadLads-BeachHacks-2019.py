@@ -14,16 +14,16 @@ def newline():
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-dungeon = [[0, 0, 0], [0, 0, 0], [0, 0, 0],
-           [0, 0, 0], [0, 0, 0], [0, 0, 0],
-           [0, 0, 0], [0, 0, 0], [0, 0, 0]]
-
 player_hp = 125
 
-def dungeon_enemies(map):
-    for corridor in map:
+def dungeon_map():
+    dungeon = [[0, 0, 0], [0, 0, 0], [0, 0, 0],
+               [0, 0, 0], [0, 0, 0], [0, 0, 0],
+               [0, 0, 0], [0, 0, 0], [0, 0, 0]]
+    for corridor in dungeon:
         for room in corridor:
             room = random.randint(0, 1)
+    return dungeon
 
 def get_player_name():
     name = input("What is your name? ")
@@ -34,9 +34,13 @@ def is_conflict(conflict):
         return 0
     return 1
 
-def print_battle_options():
+def get_enemy_name():
     enemy_name = ["Goblin", "Golem", "Giant Rat", "Troll", "Imp"]
     choose_enemy = random.randint(0, 4)
+    name = enemy_name[choose_enemy]
+    return name
+
+def print_battle_options(enemy_name):
     if choose_enemy % 2 == 0 :
         enemy_hp = random.randint(30, 50)
         enemy_ad_range = "20 - 30"
@@ -46,9 +50,8 @@ def print_battle_options():
     newline()
     print("\nYou are met with a {0}!\nEnemy HP = {1}\n"
           "Enemy AD Range = {2}\n\nBattle Options:\n1. Attack\n2. "
-          "Bag\n3. Run".format(enemy_name[choose_enemy],
+          "Bag\n3. Run".format(enemy_name,
                                 enemy_hp, enemy_ad_range))
-    return enemy_name[choose_enemy]
 
 def get_battle_option():
     choice = input("Enter your choice: ")
@@ -71,15 +74,10 @@ def battle(enemy):
     elif choice == 3:
         print("You attempt to run away.")
 
-def check_battle_over():
-    conflict = is_conflict
-    if conflict == 1:
-        return True
-    return False
-
 def main():
     player = get_player_name()
-    dungeon_enemies(dungeon)
+    dungeon = dungeon_map()
+    print(dungeon)
     corridor = 0
     area = 0
     room = dungeon[corridor][area]
@@ -93,7 +91,8 @@ def main():
             else:
                 area += 1
         else:
-            enemy_name = print_battle_options()
+            enemy_name = get_enemy_name()
+            print_battle_options(enemy_name)
             choice = get_battle_option()
             battle(enemy_name)
 
