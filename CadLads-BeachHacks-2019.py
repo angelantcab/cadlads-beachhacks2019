@@ -18,7 +18,7 @@ dungeon = [[0, 0, 0], [0, 0, 0], [0, 0, 0],
            [0, 0, 0], [0, 0, 0], [0, 0, 0],
            [0, 0, 0], [0, 0, 0], [0, 0, 0]]
 
-player_hp = 100
+player_hp = 125
 player_ad = 25
 
 enemy_hp = 80
@@ -42,10 +42,23 @@ def print_battle_options():
     enemy_name = ["Goblin", "Golem", "Troll", "Giant Rat",
                   "Dragon", "Imp"]
     choose_enemy = random.randint(0, 5)
-    print("You are met with a {0}!\nEnemy Health = {1}\n"
-          "Enemy Damage = {2}\n\nBattle Options:\n1. Attack\n2. "
+    if choose_enemy == (0 or 3 or 5):
+        enemy_hp = random.randint(30, 50)
+        enemy_ad = random.randint(20, 30)
+        enemy_ad_range = "20 - 30"
+    elif choose_enemy == (1 or 2):
+        enemy_hp = random.randint(65, 75)
+        enemy_ad = random_randint(35, 40)
+        enemy_ad_range = "35 - 40"
+    else:
+        enemy_hp = random.randint(80, 100)
+        enemy_ad = random.randint(35, 50)
+        enemy_ad_range = "35 - 50"
+    newline()
+    print("\nYou are met with a {0}!\nEnemy HP = {1}\n"
+          "Enemy AD Range = {2}\n\nBattle Options:\n1. Attack\n2. "
           "Bag\n3. Run".format(enemy_name[choose_enemy],
-                                enemy_hp, enemy_ad))
+                                enemy_hp, enemy_ad_range))
 
 print_battle_options()
 
@@ -60,14 +73,3 @@ def battle():
     if choice == 1:
         if
 '''
-
-Enters room
-def options() :
-    conflict
-        print("Defeat enemies)
-    
-    move on
-        print("Find the next room")
-              
-Next room
-def options() :
