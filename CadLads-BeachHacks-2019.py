@@ -14,11 +14,14 @@ def newline():
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-room = random.randint(0, 1)
-
 dungeon = [[room, room, room], [room, room, room], [room, room, room],
            [room, room, room], [room, room, room], [room, room, room],
            [room, room, room], [room, room, room], [room, room, room]]
+
+def dungeon_enemies(map):
+    for corridor in map:
+        for room in corridor:
+            room = random.randint(0 ,1)
 
 def get_player_name():
     name = input("What is your name? ")
@@ -40,4 +43,3 @@ def battle():
     print_battle_options()
     choice = get_battle_option():
     if choice == 1:
-        
