@@ -48,6 +48,7 @@ def print_battle_options():
           "Enemy AD Range = {2}\n\nBattle Options:\n1. Attack\n2. "
           "Bag\n3. Run".format(enemy_name[choose_enemy],
                                 enemy_hp, enemy_ad_range))
+    return enemy_name[choose_enemy]
 
 def get_battle_option():
     choice = input("Enter your choice: ")
@@ -82,6 +83,18 @@ def main():
     corridor = 0
     area = 0
     room = dungeon[corridor][area]
-    fight = is_conflict(room)
-    if fight == 0:
-        
+    system = True
+    while system:
+        fight = is_conflict(room)
+        if fight == 0:
+            if area == 2:
+                corridor += 1
+                area = 0
+            else:
+                area += 1
+        else:
+            enemy_name = print_battle_options()
+            choice = get_battle_option()
+            battle(enemy_name)
+
+main()
