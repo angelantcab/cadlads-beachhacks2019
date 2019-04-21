@@ -19,7 +19,6 @@ dungeon = [[0, 0, 0], [0, 0, 0], [0, 0, 0],
            [0, 0, 0], [0, 0, 0], [0, 0, 0]]
 
 player_hp = 125
-player_ad = 25
 
 def dungeon_enemies(map):
     for corridor in map:
@@ -40,11 +39,9 @@ def print_battle_options():
     choose_enemy = random.randint(0, 4)
     if choose_enemy % 2 == 0 :
         enemy_hp = random.randint(30, 50)
-        enemy_ad = random.randint(20, 30)
         enemy_ad_range = "20 - 30"
     else:
         enemy_hp = random.randint(65, 75)
-        enemy_ad = random.randint(35, 40)
         enemy_ad_range = "35 - 40"
     newline()
     print("\nYou are met with a {0}!\nEnemy HP = {1}\n"
@@ -52,16 +49,39 @@ def print_battle_options():
           "Bag\n3. Run".format(enemy_name[choose_enemy],
                                 enemy_hp, enemy_ad_range))
 
-print_battle_options()
-
 def get_battle_option():
     choice = input("Enter your choice: ")
     return choice
 
-'''
-def battle():
+def battle(enemy):
     print_battle_options()
-    choice = get_battle_option():
+    choice = get_battle_option()
+    player_ad = random.randint(20, 25)
     if choice == 1:
-        if
-'''
+        print("You attack {0} for {1} damage!".format(enemy,
+                                                      player_ad))
+    elif choice == 2:
+        if len(bag) == 0:
+            print("You have nothing in your bag.")
+        else:
+            print("In Bag:")
+            for i in bag:
+                print(i)
+    elif choice == 3:
+        print("You attempt to run away.")
+
+def check_battle_over():
+    conflict = is_conflict
+    if conflict == 1:
+        return True
+    return False
+
+def main():
+    player = get_player_name()
+    dungeon_enemies(dungeon)
+    corridor = 0
+    area = 0
+    room = dungeon[corridor][area]
+    fight = is_conflict(room)
+    if fight == 0:
+        
