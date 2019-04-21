@@ -15,6 +15,7 @@ def newline():
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 player_hp = 125
+bag = []
 
 def dungeon_map():
     dungeon = [[0, 0, 0], [0, 0, 0], [0, 0, 0],
@@ -88,12 +89,10 @@ def main():
             if area == 2:
                 corridor += 1
                 area = 0
-            else:
-                area += 1
-        else:
-            enemy_name = get_enemy_name()
-            print_battle_options(enemy_name)
-            choice = get_battle_option()
-            battle(enemy_name)
+            area += 1
+        enemy_name = get_enemy_name()
+        print_battle_options(enemy_name)
+        choice = get_battle_option()
+        battle(enemy_name)
 
 main()
