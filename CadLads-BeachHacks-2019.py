@@ -30,18 +30,13 @@ def get_player_name():
     name = input("What is your name? ")
     return name
 
-def is_conflict(conflict):
-    if conflict == 0:
-        return 0
-    return 1
-
 def get_enemy_name():
     enemy_name = ["Goblin", "Golem", "Giant Rat", "Troll", "Imp"]
     choose_enemy = random.randint(0, 4)
     name = enemy_name[choose_enemy]
     return name
 
-def print_battle_options(enemy_name):
+def print_battle_options(player_name, enemy_name):
     if enemy_name == ("Goblin" or "Giant Rat" or "Imp"):
         enemy_hp = random.randint(30, 50)
         enemy_ad_range = "20 - 30"
@@ -49,19 +44,19 @@ def print_battle_options(enemy_name):
         enemy_hp = random.randint(65, 75)
         enemy_ad_range = "35 - 40"
     newline()
-    print("\nYou are met with a {0}!\nEnemy HP = {1}\n"
-          "Enemy AD Range = {2}\n\nBattle Options:\n1. Attack\n2. "
-          "Bag\n3. Run".format(enemy_name,
+    print("\n{0} has encountered a(n) {1}!\nEnemy HP = {2}\n"
+          "Enemy AD Range = {3}\n\nBattle Options:\n1. Attack\n2. "
+          "Bag\n3. Run".format(player_name, enemy_name,
                                 enemy_hp, enemy_ad_range))
 
 def get_battle_option():
     choice = input("Enter your choice: ")
     return choice
 
-def battle(enemy):
-    print_battle_options(enemy)
-    choice = get_battle_option()
+def battle(player, enemy):
+    print_battle_options(player, enemy)
     player_ad = random.randint(20, 25)
+    choice = get_battle_option()
     if choice == 1:
         print("You attack {0} for {1} damage!".format(enemy,
                                                       player_ad))
@@ -75,17 +70,16 @@ def battle(enemy):
     elif choice == 3:
         print("You attempt to run away.")
 
-def advance_room(room, corridor, area):
-    fight = is_conflict(room)
-    if fight == 0:
+def advance_room(player_name, room, corridor, area):
+    if room == 0:
         if area == 2:
             corridor += 1
             area = 0
         area += 1
     enemy_name = get_enemy_name()
-    print_battle_options(enemy_name)
+    print_battle_options(player_name, enemy_name)
     choice = get_battle_option()
-    battle(enemy_name)
+    battle(player_name, enemy_name)
 
 def main():
     player = get_player_name()
@@ -96,6 +90,6 @@ def main():
     room = dungeon[corridor][area]
     system = True
     while system:
-        advance_room(room, corridor, area)
+        advance_room(player, room, corridor, area)
 
 main()
