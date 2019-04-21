@@ -41,7 +41,7 @@ def get_enemy_name():
     return name
 
 def print_battle_options(enemy_name):
-    if choose_enemy % 2 == 0 :
+    if enemy_name == ("Goblin" or "Giant Rat" or "Imp"):
         enemy_hp = random.randint(30, 50)
         enemy_ad_range = "20 - 30"
     else:
