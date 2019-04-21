@@ -75,6 +75,18 @@ def battle(enemy):
     elif choice == 3:
         print("You attempt to run away.")
 
+def advance_room(room, corridor, area):
+    fight = is_conflict(room)
+    if fight == 0:
+        if area == 2:
+            corridor += 1
+            area = 0
+        area += 1
+    enemy_name = get_enemy_name()
+    print_battle_options(enemy_name)
+    choice = get_battle_option()
+    battle(enemy_name)
+
 def main():
     player = get_player_name()
     dungeon = dungeon_map()
@@ -84,15 +96,6 @@ def main():
     room = dungeon[corridor][area]
     system = True
     while system:
-        fight = is_conflict(room)
-        if fight == 0:
-            if area == 2:
-                corridor += 1
-                area = 0
-            area += 1
-        enemy_name = get_enemy_name()
-        print_battle_options(enemy_name)
-        choice = get_battle_option()
-        battle(enemy_name)
+        advance_room(room, corridor, area)
 
 main()
